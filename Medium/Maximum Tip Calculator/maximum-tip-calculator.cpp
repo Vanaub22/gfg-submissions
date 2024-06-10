@@ -32,7 +32,7 @@ class Solution {
         for(int i=0;i<n;i++) diff[i]={abs(arr[i]-brr[i]),i};
         sort(diff.begin(),diff.end(),greater<pair<int,int>>());
         for(auto it:diff) {
-            int i=it.second;
+            int i=it.second; // does not support bindings
             if(arr[i]>brr[i]) {
                 if(x) {
                     ans+=arr[i];
