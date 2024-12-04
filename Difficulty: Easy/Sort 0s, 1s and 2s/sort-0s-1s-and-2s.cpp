@@ -7,18 +7,27 @@ using namespace std;
 class Solution {
   public:
     void sort012(vector<int>& arr) {
-        int m[]={0,0,0};
-        for(int i:arr) m[i]++;
+        int zeroes=0,ones=0,twos=0;
+        for(int i:arr) {
+            if(!i) zeroes++;
+            else if(i==1) ones++;
+            else twos++;
+        }
         for(int& i:arr) {
-            if(m[0]) {
+            if(zeroes>0) {
                 i=0;
-                m[0]--;
+                zeroes--;
+                continue;
             }
-            else if(m[1]) {
+            if(ones>0) {
                 i=1;
-                m[1]--;
+                ones--;
+                continue;
             }
-            else i=2;
+            if(twos>0) {
+                i=2;
+                twos--;
+            }
         }
     }
 };
@@ -49,6 +58,7 @@ int main() {
         }
 
         cout << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
