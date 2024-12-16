@@ -13,19 +13,20 @@ class GFG {
             int k = Integer.parseInt(br.readLine().trim());
 
             String[] line1 = br.readLine().trim().split(" ");
-            int[] arr1 = new int[line1.length];
+            int[] a = new int[line1.length];
             for (int i = 0; i < line1.length; i++) {
-                arr1[i] = Integer.parseInt(line1[i]);
+                a[i] = Integer.parseInt(line1[i]);
             }
 
             String[] line2 = br.readLine().trim().split(" ");
-            int[] arr2 = new int[line2.length];
+            int[] b = new int[line2.length];
             for (int i = 0; i < line2.length; i++) {
-                arr2[i] = Integer.parseInt(line2[i]);
+                b[i] = Integer.parseInt(line2[i]);
             }
 
             Solution ob = new Solution();
-            System.out.println(ob.kthElement(k, arr1, arr2));
+            System.out.println(ob.kthElement(a, b, k));
+            System.out.println("~");
         }
     }
 }
@@ -36,11 +37,24 @@ class GFG {
 // User function Template for Java
 
 class Solution {
-    public long kthElement(int k, int arr1[], int arr2[]) {
-        ArrayList<Integer> a=new ArrayList<>();
-        for(Integer i:arr1) a.add(i);
-        for(Integer i:arr2) a.add(i);
-        Collections.sort(a);
-        return a.get(k-1);
+    public int kthElement(int a[], int b[], int k) {
+        int i=0,j=0,m=a.length,n=b.length,ans=0;
+        while(i<m && j<n) {
+            if(a[i]<b[j]) ans=a[i++];
+            else ans=b[j++];
+            k--;
+            if(k==0) return ans;
+        }
+        while(i<m) {
+            ans=a[i++];
+            k--;
+            if(k==0) return ans;
+        }
+        while(j<n) {
+            ans=b[j++];
+            k--;
+            if(k==0) return ans;
+        }
+        return -1;
     }
 }
